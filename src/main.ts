@@ -48,7 +48,7 @@ async function bootstrap() {
     await app.init(); // no listen
     return app.getHttpAdapter().getInstance();
   } else {
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 5000;
     await app.listen(port);
     console.log(`🚀 Server running at http://localhost:${port}`);
   }
