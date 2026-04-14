@@ -41,8 +41,7 @@ export class Product extends BaseEntity {
   // @Column()
   // categoryId: number;
 
-  // @Column()
-  // subcategoryId: number;
+
 
   // FAQ relationship
   @OneToMany(() => FAQ, (faq) => faq.product, { cascade: true })

@@ -41,7 +41,7 @@ dotenv.config();
       database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
-       namingStrategy: new SnakeNamingStrategy(),
+      namingStrategy: new SnakeNamingStrategy(),
     }),
     ConfigModule.forRoot({
       isGlobal: true,
