@@ -47,23 +47,42 @@ export class ProductController {
     type: Number,
     description: 'Current page number',
   })
-  @ApiQuery({
-    name: 'status',
-    required: false,
-    type: Number,
-    description: 'Filter by product status',
-  })
+  @ApiQuery({ name: 'categoryId', required: false, type: Number })
+  @ApiQuery({ name: 'subcategoryId', required: false, type: Number })
+  @ApiQuery({ name: 'colorId', required: false, type: Number })
+  @ApiQuery({ name: 'sizeId', required: false, type: Number })
+  @ApiQuery({ name: 'minPrice', required: false, type: Number })
+  @ApiQuery({ name: 'maxPrice', required: false, type: Number })
+  @ApiQuery({ name: 'search', required: false, type: String })
   @ApiResponse({
     status: 200,
-    description: 'Paginated list of products',
+    description: 'Paginated list of products with filters',
     type: [Product],
   })
   async findAll(
     @Query('limit', new ParseIntPipe({ optional: true })) limit: number,
     @Query('page', new ParseIntPipe({ optional: true })) page: number,
-    @Query('status') status?: number,
+    @Query('status') status?: string,
+    @Query('categoryId', new ParseIntPipe({ optional: true })) categoryId?: number,
+    @Query('subcategoryId', new ParseIntPipe({ optional: true })) subcategoryId?: number,
+    @Query('colorId', new ParseIntPipe({ optional: true })) colorId?: number,
+    @Query('sizeId', new ParseIntPipe({ optional: true })) sizeId?: number,
+    @Query('minPrice', new ParseIntPipe({ optional: true })) minPrice?: number,
+    @Query('maxPrice', new ParseIntPipe({ optional: true })) maxPrice?: number,
+    @Query('search') search?: string,
   ) {
-    return this.productService.findAll({ page, limit, status });
+    return this.productService.findAll({
+      page,
+      limit,
+      status,
+      categoryId,
+      subcategoryId,
+      colorId,
+      sizeId,
+      minPrice,
+      maxPrice,
+      search,
+    });
   }
 
   @Get(':id')

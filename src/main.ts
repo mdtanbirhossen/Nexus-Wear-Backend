@@ -1,10 +1,7 @@
 import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import {
-  ClassSerializerInterceptor,
-  ValidationPipe,
-} from '@nestjs/common';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import type { Request, Response } from 'express';
 
 let cachedApp: any;
@@ -14,11 +11,12 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [
-      'https://nexus-wear-dashboard.vercel.app',
       'http://localhost:3000',
       'http://localhost:3001',
       'http://localhost:3002',
+      'https://nexus-wear-dashboard.vercel.app',
       'https://nexus-wear-tawny.vercel.app',
+      'https://nexus-wear-theta.vercel.app',
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,

@@ -90,10 +90,24 @@ export class ProductService {
     limit = 0,
     page = 0,
     status,
+    categoryId,
+    subcategoryId,
+    colorId,
+    sizeId,
+    minPrice,
+    maxPrice,
+    search,
   }: {
     limit: number;
     page: number;
-    status?: number;
+    status?: string;
+    categoryId?: number;
+    subcategoryId?: number;
+    colorId?: number;
+    sizeId?: number;
+    minPrice?: number;
+    maxPrice?: number;
+    search?: string;
   }): Promise<{
     data: Product[];
     limit: number;
@@ -109,9 +123,33 @@ export class ProductService {
       .leftJoinAndSelect('product.faqs', 'faqs')
       .orderBy('product.createdAt', 'DESC');
 
-    // Optional status filter
+    // Filters
     if (status) {
       query.andWhere('product.status = :status', { status });
+    }
+    if (categoryId) {
+      query.andWhere('category.id = :categoryId', { categoryId });
+    }
+    if (subcategoryId) {
+      query.andWhere('subCategory.id = :subcategoryId', { subcategoryId });
+    }
+    if (colorId) {
+      query.andWhere('colors.id = :colorId', { colorId });
+    }
+    if (sizeId) {
+      query.andWhere('sizes.id = :sizeId', { sizeId });
+    }
+    if (minPrice !== undefined) {
+      query.andWhere('product.price >= :minPrice', { minPrice });
+    }
+    if (maxPrice !== undefined) {
+      query.andWhere('product.price <= :maxPrice', { maxPrice });
+    }
+    if (search) {
+      query.andWhere(
+        '(product.name ILIKE :search OR product.description ILIKE :search)',
+        { search: `%${search}%` },
+      );
     }
 
     // Pagination
