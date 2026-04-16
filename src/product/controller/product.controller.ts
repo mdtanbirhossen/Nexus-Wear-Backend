@@ -14,6 +14,7 @@ import { ProductService } from '../service/product.service';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 import { Product } from '../entity/product.entity';
+import { ProductStatus } from 'src/common/types/status.enum';
 
 @ApiTags('Product')
 @Controller('product')
@@ -47,6 +48,7 @@ export class ProductController {
     type: Number,
     description: 'Current page number',
   })
+  @ApiQuery({ name: 'status', required: false, enum: ProductStatus })
   @ApiQuery({ name: 'categoryId', required: false, type: Number })
   @ApiQuery({ name: 'subcategoryId', required: false, type: Number })
   @ApiQuery({ name: 'colorId', required: false, type: Number })
