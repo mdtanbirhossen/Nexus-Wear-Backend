@@ -72,25 +72,25 @@ export class UpdateProductDto {
   @IsEnum(ProductStatus)
   availability?: ProductStatus;
 
-  @ApiPropertyOptional({ example: 1, description: 'ID of the category' })
+  @ApiPropertyOptional({ example: 'uuid-cat1', description: 'ID of the category' })
   @IsOptional()
   @IsString()
   categoryId?: string;
 
-  @ApiPropertyOptional({ example: 2, description: 'ID of the subcategory' })
+  @ApiPropertyOptional({ example: 'uuid-sub1', description: 'ID of the subcategory' })
   @IsOptional()
   @IsString()
   subcategoryId?: string;
 
-  @ApiPropertyOptional({ example: [1, 2], description: 'Array of color IDs' })
+  @ApiPropertyOptional({ example: ['uuid-col1', 'uuid-col2'], description: 'Array of color IDs' })
   @IsOptional()
   @IsArray()
-  @IsNumber({}, { each: true })
-  colorIds?: number[];
+  @IsString({ each: true })
+  colorIds?: string[];
 
-  @ApiPropertyOptional({ example: [1, 3], description: 'Array of size IDs' })
+  @ApiPropertyOptional({ example: ['uuid-sz1', 'uuid-sz2'], description: 'Array of size IDs' })
   @IsOptional()
   @IsArray()
-  @IsNumber({}, { each: true })
-  sizeIds?: number[];
+  @IsString({ each: true })
+  sizeIds?: string[];
 }

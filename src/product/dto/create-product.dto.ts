@@ -74,22 +74,22 @@ export class CreateProductDto {
   subcategoryId: string;
 
   @ApiProperty({
-    example: [1, 2],
+    example: ['uuid-1', 'uuid-2'],
     description: 'Array of color IDs',
     required: false,
   })
   @IsOptional()
   @IsArray()
-  @IsNumber({}, { each: true })
-  colorIds?: number[];
+  @IsString({ each: true })
+  colorIds?: string[];
 
   @ApiProperty({
-    example: [1, 3],
+    example: ['uuid-1', 'uuid-3'],
     description: 'Array of size IDs',
     required: false,
   })
   @IsOptional()
   @IsArray()
-  @IsNumber({}, { each: true })
-  sizeIds?: number[];
+  @IsString({ each: true })
+  sizeIds?: string[];
 }

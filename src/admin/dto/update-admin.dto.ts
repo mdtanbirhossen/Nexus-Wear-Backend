@@ -1,9 +1,7 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsEmail,
   IsEnum,
-  IsNumber,
   IsOptional,
   IsString,
 } from 'class-validator';
@@ -74,11 +72,10 @@ export class UpdateAdminDto {
   status: AdminStatus;
 
   @ApiPropertyOptional({
-    example: 1,
+    example: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
     description: 'Enter here admin role id ',
   })
   @IsOptional()
-  @Type(() => Number)
   @IsString()
   roleId: string;
 }

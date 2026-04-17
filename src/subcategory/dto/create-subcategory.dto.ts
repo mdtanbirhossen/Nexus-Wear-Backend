@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateSubcategoryDto {
   @ApiProperty({
@@ -26,11 +26,10 @@ export class CreateSubcategoryDto {
   image?: Express.Multer.File;
 
   @ApiProperty({
-    example: 1,
+    example: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
     description: 'category id should be here',
   })
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  @Type(() => Number)
   categoryId: string;
 }

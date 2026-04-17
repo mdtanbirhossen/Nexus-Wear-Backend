@@ -1,5 +1,5 @@
 // src/dto/update-notification.dto.ts
-import { IsBoolean, IsOptional, IsString, MaxLength, IsNumber } from 'class-validator';
+import { IsBoolean, IsOptional, IsString, MaxLength } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class UpdateNotificationDto {
@@ -23,7 +23,7 @@ export class UpdateNotificationDto {
 
   @ApiPropertyOptional({
     description: 'Customer ID associated with this notification',
-    example: null,
+    example: 'uuid-cust-1',
   })
   @IsOptional()
   @IsString()
@@ -31,7 +31,7 @@ export class UpdateNotificationDto {
 
   @ApiPropertyOptional({
     description: 'Order ID associated with this notification',
-    example: 1001,
+    example: 'uuid-order-1',
   })
   @IsOptional()
   @IsString()
@@ -39,11 +39,11 @@ export class UpdateNotificationDto {
 
   @ApiPropertyOptional({
     description: 'Payment ID associated with this notification',
-    example: 5005,
+    example: 'uuid-payment-5005',
   })
   @IsOptional()
-  @IsNumber()
-  paymentId?: number;
+  @IsString()
+  paymentId?: string;
 
   @ApiPropertyOptional({
     description: 'Is this notification related to an offer',

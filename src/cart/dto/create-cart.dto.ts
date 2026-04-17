@@ -2,7 +2,6 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsArray,
-  IsInt,
   IsOptional,
   IsString,
   ValidateNested,
@@ -12,10 +11,10 @@ import { CreateCartItemDto } from './create-cart-item.dto';
 export class CreateCartDto {
   @ApiPropertyOptional({
     description: 'Customer ID for logged-in users',
-    example: 12,
+    example: 'uuid-cust-12',
   })
   @IsOptional()
-  @IsInt()
+  @IsString()
   customerId?: string;
 
   @ApiPropertyOptional({

@@ -1,5 +1,11 @@
 // src/dto/create-notification.dto.ts
-import { IsBoolean, IsNotEmpty, IsOptional, IsString, MaxLength, IsNumber } from 'class-validator';
+import {
+  IsBoolean,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateNotificationDto {
@@ -23,7 +29,7 @@ export class CreateNotificationDto {
 
   @ApiPropertyOptional({
     description: 'Customer ID associated with this notification',
-    example: 1,
+    example: 'uuid-cust-1',
   })
   @IsOptional()
   @IsString()
@@ -31,7 +37,7 @@ export class CreateNotificationDto {
 
   @ApiPropertyOptional({
     description: 'Order ID associated with this notification',
-    example: 1001,
+    example: 'uuid-order-1',
   })
   @IsOptional()
   @IsString()
@@ -39,11 +45,11 @@ export class CreateNotificationDto {
 
   @ApiPropertyOptional({
     description: 'Payment ID associated with this notification',
-    example: 5005,
+    example: 'uuid-payment-1',
   })
   @IsOptional()
-  @IsNumber()
-  paymentId?: number;
+  @IsString()
+  paymentId?: string;
 
   @ApiPropertyOptional({
     description: 'Is this notification related to an offer',

@@ -1,6 +1,6 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class UpdateSubcategoryDto {
   @ApiPropertyOptional({
@@ -26,10 +26,9 @@ export class UpdateSubcategoryDto {
   image?: Express.Multer.File;
 
   @ApiPropertyOptional({
-    example: 1,
+    example: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
     description: 'category id should be here',
   })
-  @IsNumber()
-  @Type(() => Number)
+  @IsString()
   categoryId: string;
 }
