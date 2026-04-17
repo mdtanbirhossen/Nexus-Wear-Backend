@@ -74,13 +74,13 @@ export class UpdateProductDto {
 
   @ApiPropertyOptional({ example: 1, description: 'ID of the category' })
   @IsOptional()
-  @IsNumber()
-  categoryId?: number;
+  @IsString()
+  categoryId?: string;
 
   @ApiPropertyOptional({ example: 2, description: 'ID of the subcategory' })
   @IsOptional()
-  @IsNumber()
-  subcategoryId?: number;
+  @IsString()
+  subcategoryId?: string;
 
   @ApiPropertyOptional({ example: [1, 2], description: 'Array of color IDs' })
   @IsOptional()

@@ -15,8 +15,8 @@ export class NotificationService {
 
   //  Create Order Notification
   async createOrderNotification(
-    orderId: number,
-    customerId: number,
+    orderId: string,
+    customerId: string,
     title: string,
     message: string,
   ): Promise<Notification> {
@@ -44,7 +44,7 @@ export class NotificationService {
   }
 
   //  Get Notifications by Customer ID
-  async getNotificationsByCustomerId(customerId: number): Promise<any[]> {
+  async getNotificationsByCustomerId(customerId: string): Promise<any[]> {
     const notifications = await this.notificationRepository
       .createQueryBuilder('notification')
       .where('notification.customerId = :customerId', { customerId })
@@ -73,7 +73,7 @@ export class NotificationService {
   }
 
   //  Delete Notification
-  async deleteNotification(id: number): Promise<void> {
+  async deleteNotification(id: string): Promise<void> {
     const result = await this.notificationRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Notification with id ${id} not found`);
@@ -81,7 +81,7 @@ export class NotificationService {
   }
 
   //  Update isSeen by Notification ID
-  async markAsSeen(notificationId: number, customerId: number): Promise<void> {
+  async markAsSeen(notificationId: string, customerId: string): Promise<void> {
     const existing = await this.notificationSeenRepository.findOne({
       where: { notificationId, customerId },
     });
@@ -106,7 +106,7 @@ export class NotificationService {
   }
 
   //  Get Notification by ID
-  async getNotificationById(id: number): Promise<Notification> {
+  async getNotificationById(id: string): Promise<Notification> {
     const notification = await this.notificationRepository.findOne({ where: { id } });
     if (!notification) {
       throw new NotFoundException(`Notification with id ${id} not found`);

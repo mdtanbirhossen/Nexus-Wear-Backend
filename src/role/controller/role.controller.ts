@@ -57,7 +57,7 @@ export class RoleController {
   })
   @ApiResponse({ status: 404, description: 'Role not found' })
   findOne(@Param('id') id: string) {
-    return this.roleService.findOne(+id);
+    return this.roleService.findOne(id);
   }
 
   @Patch(':id')
@@ -71,7 +71,7 @@ export class RoleController {
   // @UseGuards(PermissionGuard)
   // @RequirePermission('manage_roles')
   update(@Param('id') id: string, @Body() updateRoleDto: UpdateRoleDto) {
-    return this.roleService.update(+id, updateRoleDto);
+    return this.roleService.update(id, updateRoleDto);
   }
 
   @Delete(':id')
@@ -84,6 +84,6 @@ export class RoleController {
   // @UseGuards(PermissionGuard)
   // @RequirePermission('manage_roles')
   remove(@Param('id') id: string) {
-    return this.roleService.remove(+id);
+    return this.roleService.remove(id);
   }
 }

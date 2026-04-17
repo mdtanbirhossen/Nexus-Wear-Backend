@@ -57,7 +57,7 @@ export class SubcategoryService {
   }: {
     limit: number;
     page: number;
-    categoryId?: number;
+    categoryId?: string;
   }): Promise<{
     data: Subcategory[];
     limit: number;
@@ -81,7 +81,7 @@ export class SubcategoryService {
     return { data, limit, page, total };
   }
 
-  async findOne(id: number): Promise<Subcategory> {
+  async findOne(id: string): Promise<Subcategory> {
     const subcategory = await this.subcategoryRepository
       .createQueryBuilder('subcategory')
       .where('subcategory.id = :id', { id })
@@ -97,7 +97,7 @@ export class SubcategoryService {
   }
 
   async update(
-    id: number,
+    id: string,
     updateSubcategoryDto: UpdateSubcategoryDto,
     image: Express.Multer.File,
   ) {
@@ -127,7 +127,7 @@ export class SubcategoryService {
     return this.subcategoryRepository.save(subcategory);
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const result = await this.subcategoryRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Subcategory not found with ID:${id} `);

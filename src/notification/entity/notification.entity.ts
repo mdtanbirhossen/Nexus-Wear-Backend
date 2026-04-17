@@ -9,7 +9,7 @@ import {
 @Entity('notification')
 export class Notification {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column({ type: 'varchar', length: 255 })
   title: string;
@@ -18,13 +18,13 @@ export class Notification {
   message: string;
 
   @Column({ nullable: true, default: null })
-  customerId?: number;
+  customerId: string;
 
   @Column({ nullable: true, default: null })
-  orderId?: number;
+  orderId: string;
 
   @Column({ nullable: true, default: null })
-  paymentId?: number;
+  paymentId: string;
 
   @Column({ type: 'boolean', nullable: true, default: null })
   offer?: boolean;

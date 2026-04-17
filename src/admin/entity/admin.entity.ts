@@ -33,7 +33,7 @@ export class Admin extends BaseEntity {
   role: Role;
 
   @Column({ name: 'role_id' })
-  roleId: number;
+  roleId: string;
 
   @Column({ default: AdminStatus.PENDING })
   status: AdminStatus;

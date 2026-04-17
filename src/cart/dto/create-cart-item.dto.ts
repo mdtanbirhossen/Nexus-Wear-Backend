@@ -7,7 +7,7 @@ export class CreateCartItemDto {
     example: 101,
   })
   @IsInt()
-  productId: number;
+  productId: string;
 
   @ApiProperty({
     description: 'Quantity of the selected product',
@@ -22,14 +22,14 @@ export class CreateCartItemDto {
     example: 3,
   })
   @IsInt()
-  sizeId: number;
+  sizeId: string;
 
   @ApiProperty({
     description: 'Color ID of the selected product',
     example: 5,
   })
   @IsInt()
-  colorId: number;
+  colorId: string;
 
   @ApiProperty({
     description: 'Unit price of the product at the time of adding to cart',

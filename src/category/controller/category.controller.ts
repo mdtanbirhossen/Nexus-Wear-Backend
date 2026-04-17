@@ -4,12 +4,13 @@ import {
   Delete,
   Get,
   Param,
-  ParseIntPipe,
+  ParseUUIDPipe,
   Patch,
   Post,
   Query,
   UploadedFile,
   UseInterceptors,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CategoryService } from '../service/category.service';
 import { R2UploadService } from 'src/r2-upload/service/r2-upload.service';
@@ -44,7 +45,7 @@ export class CategoryController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.categoryService.findOne(id);
   }
 
@@ -52,7 +53,7 @@ export class CategoryController {
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('image'))
   update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() body: UpdateCategoryDto,
     @UploadedFile() image: Express.Multer.File,
   ) {
@@ -60,7 +61,7 @@ export class CategoryController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
+  remove(@Param('id') id: string) {
     return this.categoryService.remove(id);
   }
 }

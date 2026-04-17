@@ -44,7 +44,7 @@ export class R2UploadService {
     }
   }
 
-  private generateKey(folder: string, id: number, filename: string): string {
+  private generateKey(folder: string, id: string, filename: string): string {
     return `${folder}/${id}/${Date.now()}-${filename}`;
   }
 
@@ -92,7 +92,7 @@ export class R2UploadService {
   // upload image method
   async uploadImage(
     file: Express.Multer.File,
-    id: number,
+    id: string,
     folderName: string,
   ): Promise<string> {
     const key = this.generateKey(folderName, id, file.originalname);

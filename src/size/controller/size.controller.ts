@@ -5,12 +5,13 @@ import {
   Get,
   Param,
   ParseBoolPipe,
-  ParseIntPipe,
+  ParseUUIDPipe,
   Patch,
   Post,
   Query,
   UploadedFile,
   UseInterceptors,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiConsumes, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { SizeService } from '../service/size.service';
@@ -45,7 +46,7 @@ export class SizeController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Get size by id' })
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.sizeService.findOne(id);
   }
 
@@ -54,7 +55,7 @@ export class SizeController {
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('image'))
   update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() updateSizeDto: UpdateSizeDto,
     @UploadedFile() image: Express.Multer.File,
   ) {
@@ -62,7 +63,7 @@ export class SizeController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
+  remove(@Param('id') id: string) {
     return this.sizeService.remove(id);
   }
 }

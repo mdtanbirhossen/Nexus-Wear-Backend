@@ -79,6 +79,6 @@ export class CreateAdminDto {
   })
   @IsOptional()
   @Type(() => Number)
-  @IsNumber()
-  roleId: number;
+  @IsString()
+  roleId: string;
 }

@@ -18,6 +18,6 @@ export class R2UploadController {
   @UseInterceptors(FileInterceptor('file'))
   @ApiBody({ type: UploadProductImageDto })
   async uploadProductImage(@UploadedFile() file: Express.Multer.File) {
-    return this.r2UploadService.uploadImage(file, 0, 'products');
+    return this.r2UploadService.uploadImage(file, '0', 'products');
   }
 }

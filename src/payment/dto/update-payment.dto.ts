@@ -43,14 +43,14 @@ export class UpdatePaymentDto {
 
   @ApiPropertyOptional({ example: 1, description: 'Related order ID' })
   @IsOptional()
-  @IsNumber()
-  orderId?: number;
+  @IsString()
+  orderId?: string;
 
   @ApiPropertyOptional({
     example: 1,
     description: 'Customer ID making the payment',
   })
   @IsOptional()
-  @IsNumber()
-  customerId?: number;
+  @IsString()
+  customerId?: string;
 }

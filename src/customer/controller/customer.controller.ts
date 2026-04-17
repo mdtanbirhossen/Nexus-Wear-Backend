@@ -11,6 +11,7 @@ import {
   Param,
   UseGuards,
   Query,
+  ParseUUIDPipe,
   ParseIntPipe,
 } from '@nestjs/common';
 import { CustomerService } from '../service/customer.service';
@@ -57,7 +58,7 @@ export class CustomerController {
 
   @UseGuards(JwtAuthGuard)
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.customerService.findOne(id);
   }
 }

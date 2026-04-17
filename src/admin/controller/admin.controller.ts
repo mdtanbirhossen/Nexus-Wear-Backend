@@ -6,7 +6,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
-  ParseIntPipe,
+  ParseUUIDPipe,
   Patch,
   Post,
   Query,
@@ -14,6 +14,7 @@ import {
   UploadedFiles,
   UseGuards,
   UseInterceptors,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { AdminService } from '../service/admin.service';
 import { ApiConsumes, ApiOperation, ApiQuery } from '@nestjs/swagger';
@@ -69,7 +70,7 @@ export class AdminController {
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Get(':id')
   @ApiOperation({ summary: 'Get admin by id' })
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.adminService.findOne(id);
   }
 
@@ -79,7 +80,7 @@ export class AdminController {
   @UseInterceptors(FileFieldsInterceptor([{ name: 'image', maxCount: 1 }]))
   @HttpCode(HttpStatus.CREATED)
   update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() updateAdminDto: UpdateAdminDto,
     @UploadedFiles() files: { image: Express.Multer.File },
   ) {
@@ -88,13 +89,13 @@ export class AdminController {
 
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Delete('soft/:id')
-  softRemove(@Param('id') id: number) {
+  softRemove(@Param('id') id: string) {
     return this.adminService.softRemove(id);
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Delete(':id')
-  hardRemove(@Param('id') id: number) {
+  hardRemove(@Param('id') id: string) {
     return this.adminService.hardRemove(id);
   }
 }

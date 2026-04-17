@@ -135,7 +135,7 @@ export class CustomerService {
     return { data, limit, page, total };
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const customer = await this.customerRepository
       .createQueryBuilder('customer')
       .where('customer.id = :id', { id })
@@ -149,7 +149,7 @@ export class CustomerService {
 
   // ✅ Update (PATCH) Customer
   async update(
-    id: number,
+    id: string,
     updateData: Partial<CreateCustomerDto>,
     imageFile?: Express.Multer.File,
   ) {
@@ -187,7 +187,7 @@ export class CustomerService {
   }
 
   // ✅ Soft Delete Customer
-  async softDelete(id: number) {
+  async softDelete(id: string) {
     const customer = await this.findOne(id);
     await this.customerRepository.softRemove(customer);
 
@@ -198,7 +198,7 @@ export class CustomerService {
   }
 
   // ✅ Hard Delete Customer
-  async hardDelete(id: number) {
+  async hardDelete(id: string) {
     const customer = await this.findOne(id);
     await this.customerRepository.remove(customer);
 

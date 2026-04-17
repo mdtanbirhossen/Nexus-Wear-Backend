@@ -16,19 +16,19 @@ import { BaseEntity } from 'src/common/entities/Base.entity';
 @Entity('cart_item')
 export class CartItem extends BaseEntity {
   @Column()
-  cartId: number;
+  cartId: string;
 
   @Column()
-  productId: number;
+  productId: string;
 
   @Column()
   quantity: number;
 
   @Column()
-  sizeId: number;
+  sizeId: string;
 
   @Column()
-  colorId: number;
+  colorId: string;
 
   @Column()
   unitPrice: number;

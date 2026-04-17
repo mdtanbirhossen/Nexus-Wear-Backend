@@ -6,8 +6,9 @@ import {
   Param,
   Patch,
   Delete,
-  ParseIntPipe,
+  ParseUUIDPipe,
   Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
 import { ProductService } from '../service/product.service';
@@ -65,10 +66,10 @@ export class ProductController {
     @Query('limit', new ParseIntPipe({ optional: true })) limit: number,
     @Query('page', new ParseIntPipe({ optional: true })) page: number,
     @Query('status') status?: string,
-    @Query('categoryId', new ParseIntPipe({ optional: true })) categoryId?: number,
-    @Query('subcategoryId', new ParseIntPipe({ optional: true })) subcategoryId?: number,
-    @Query('colorId', new ParseIntPipe({ optional: true })) colorId?: number,
-    @Query('sizeId', new ParseIntPipe({ optional: true })) sizeId?: number,
+    @Query('categoryId') categoryId?: string,
+    @Query('subcategoryId') subcategoryId?: string,
+    @Query('colorId') colorId?: string,
+    @Query('sizeId') sizeId?: string,
     @Query('minPrice', new ParseIntPipe({ optional: true })) minPrice?: number,
     @Query('maxPrice', new ParseIntPipe({ optional: true })) maxPrice?: number,
     @Query('search') search?: string,
@@ -94,7 +95,7 @@ export class ProductController {
     description: 'Product details retrieved successfully',
     type: Product,
   })
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Product> {
+  async findOne(@Param('id', ParseUUIDPipe) id: string): Promise<Product> {
     return this.productService.findOne(id);
   }
 
@@ -106,7 +107,7 @@ export class ProductController {
     type: Product,
   })
   async update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() updateProductDto: UpdateProductDto,
   ): Promise<Product> {
     return this.productService.update(id, updateProductDto);
@@ -122,7 +123,7 @@ export class ProductController {
     description: 'Product deleted successfully',
   })
   async remove(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseUUIDPipe) id: string,
   ): Promise<{ message: string }> {
     return this.productService.remove(id);
   }

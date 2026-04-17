@@ -5,12 +5,13 @@ import {
   Get,
   Param,
   ParseBoolPipe,
-  ParseIntPipe,
+  ParseUUIDPipe,
   Patch,
   Post,
   Query,
   UploadedFile,
   UseInterceptors,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ColorService } from '../service/color.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -45,7 +46,7 @@ export class ColorController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Get Color by id' })
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.colorService.findOne(id);
   }
 
@@ -54,7 +55,7 @@ export class ColorController {
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('image'))
   update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() updateColorDto: UpdateColorDto,
     @UploadedFile() image: Express.Multer.File,
   ) {
@@ -62,7 +63,7 @@ export class ColorController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
+  remove(@Param('id') id: string) {
     return this.colorService.remove(id);
   }
 }

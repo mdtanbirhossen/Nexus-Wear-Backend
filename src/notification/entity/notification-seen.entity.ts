@@ -3,13 +3,13 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeor
 @Entity('notification_seen')
 export class NotificationSeen {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column()
-  notificationId: number;
+  notificationId: string;
 
   @Column()
-  customerId: number;
+  customerId: string;
 
   @Column({ type: 'boolean', default: true })
   isSeen: boolean;

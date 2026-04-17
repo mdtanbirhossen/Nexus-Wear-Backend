@@ -153,7 +153,7 @@ export class AdminService {
     return { data, limit, total, page };
   }
 
-  async findOne(id: number): Promise<Admin> {
+  async findOne(id: string): Promise<Admin> {
     const admin = await this.adminRepository
       .createQueryBuilder('admin')
       .where('admin.id =:id', { id })
@@ -168,7 +168,7 @@ export class AdminService {
   }
 
   async update(
-    id: number,
+    id: string,
     updateAdminDto: UpdateAdminDto,
     image: Express.Multer.File,
   ) {
@@ -211,7 +211,7 @@ export class AdminService {
     };
   }
 
-  async hardRemove(id: number) {
+  async hardRemove(id: string) {
     const result = await this.adminRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Admin with ID ${id} not found`);
@@ -219,7 +219,7 @@ export class AdminService {
     return { message: `Admin with ID:${id} has deleted`, status: 'success' };
   }
 
-  async softRemove(id: number) {
+  async softRemove(id: string) {
     const admin = await this.findOne(id);
     admin.status = AdminStatus.DELETED;
     await this.adminRepository.save(admin);

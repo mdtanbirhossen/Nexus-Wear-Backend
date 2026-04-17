@@ -45,7 +45,7 @@ export class RoleService {
     });
   }
 
-  async findOne(id: number): Promise<Role> {
+  async findOne(id: string): Promise<Role> {
     const role = await this.roleRepository.findOne({
       where: { id },
     });
@@ -69,7 +69,7 @@ export class RoleService {
     return role;
   }
 
-  async update(id: number, updateRoleDto: UpdateRoleDto): Promise<Role> {
+  async update(id: string, updateRoleDto: UpdateRoleDto): Promise<Role> {
     const { ...roleData } = updateRoleDto;
 
     // If updating name, check that it doesn't conflict with existing role
@@ -98,7 +98,7 @@ export class RoleService {
     return this.roleRepository.save(role);
   }
 
-  async remove(id: number): Promise<string> {
+  async remove(id: string): Promise<string> {
     // Check if any admin is using this role
     const role = await this.roleRepository.findOne({
       where: { id },

@@ -5,7 +5,7 @@ import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 @Entity('faq')
 export class FAQ extends BaseEntity {
   @Column()
-  productId: number;
+  productId: string;
 
   @ManyToOne(() => Product, (product) => product.faqs, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'productId' })

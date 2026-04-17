@@ -37,7 +37,7 @@ async getAllOrders({
 }: {
   limit: number;
   page: number;
-  customerId?: number;
+  customerId?: string;
 }): Promise<{
   data: Order[];
   limit: number;
@@ -71,7 +71,7 @@ async getAllOrders({
 
 
   // Get single order by ID
-  async getOrderById(id: number): Promise<Order> {
+  async getOrderById(id: string): Promise<Order> {
     const order = await this.orderRepository.findOne({
       where: { id },
       relations: ['customer'],
@@ -83,7 +83,7 @@ async getAllOrders({
   }
 
   // Update order (status, payment, etc.)
-  async updateOrder(id: number, updateData: Partial<Order>): Promise<Order> {
+  async updateOrder(id: string, updateData: Partial<Order>): Promise<Order> {
     const order = await this.getOrderById(id);
 
     Object.assign(order, updateData);
@@ -92,7 +92,7 @@ async getAllOrders({
   }
 
   // Delete order
-  async deleteOrder(id: number): Promise<{ message: string }> {
+  async deleteOrder(id: string): Promise<{ message: string }> {
     const result = await this.orderRepository.delete(id);
 
     if (result.affected === 0) {

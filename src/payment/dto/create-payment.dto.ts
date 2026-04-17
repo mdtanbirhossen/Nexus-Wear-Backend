@@ -47,8 +47,8 @@ export class CreatePaymentDto {
     required: false,
   })
   @IsOptional()
-  @IsNumber()
-  orderId?: number;
+  @IsString()
+  orderId?: string;
 
   @ApiProperty({
     example: 1,
@@ -56,6 +56,6 @@ export class CreatePaymentDto {
     required: false,
   })
   @IsOptional()
-  @IsNumber()
-  customerId?: number;
+  @IsString()
+  customerId?: string;
 }

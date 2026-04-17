@@ -79,6 +79,6 @@ export class UpdateAdminDto {
   })
   @IsOptional()
   @Type(() => Number)
-  @IsNumber()
-  roleId: number;
+  @IsString()
+  roleId: string;
 }

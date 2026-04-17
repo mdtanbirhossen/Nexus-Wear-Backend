@@ -60,7 +60,7 @@ export class ColorService {
     return { data, page, limit, total };
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const color = await this.colorRepository
       .createQueryBuilder('color')
       .where('color.id = :id', { id })
@@ -73,7 +73,7 @@ export class ColorService {
   }
 
   async update(
-    id: number,
+    id: string,
     updateColorDto: UpdateColorDto,
     image: Express.Multer.File,
   ) {
@@ -101,7 +101,7 @@ export class ColorService {
     };
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const result = await this.colorRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`No color found with ID:${id}`);

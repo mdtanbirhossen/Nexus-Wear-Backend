@@ -15,8 +15,8 @@ import { OrderStatus, PaymentType } from 'src/common/types/status.enum';
 
 export class OrderProductDto implements OrderProduct {
   @ApiProperty({ example: 1, description: 'Product ID' })
-  @IsNumber()
-  productId: number;
+  @IsString()
+  productId: string;
 
   @ApiProperty({
     example: 'PROD123',
@@ -28,12 +28,12 @@ export class OrderProductDto implements OrderProduct {
   productCode?: string;
 
   @ApiProperty({ example: 2, description: 'Selected size ID' })
-  @IsNumber()
-  sizeId: number;
+  @IsString()
+  sizeId: string;
 
   @ApiProperty({ example: 3, description: 'Selected color ID' })
-  @IsNumber()
-  colorId: number;
+  @IsString()
+  colorId: string;
 
   @ApiProperty({ example: 1200, description: 'Unit price of product' })
   @IsNumber()
@@ -127,8 +127,8 @@ export class CreateOrderDto {
   totalAmount: number;
 
   @ApiProperty({ example: 1, description: 'Customer ID who placed the order' })
-  @IsNumber()
-  customerId: number;
+  @IsString()
+  customerId: string;
 
   @ApiProperty({
     type: [OrderProductDto],

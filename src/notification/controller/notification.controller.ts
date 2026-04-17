@@ -54,7 +54,7 @@ export class NotificationController {
     type: [Notification],
   })
   async getByCustomer(
-    @Param('customerId') customerId: number,
+    @Param('customerId') customerId: string,
   ): Promise<Notification[]> {
     return this.notificationService.getNotificationsByCustomerId(customerId);
   }
@@ -77,7 +77,7 @@ export class NotificationController {
     status: 200,
     description: 'Notification deleted successfully.',
   })
-  async delete(@Param('id') id: number): Promise<void> {
+  async delete(@Param('id') id: string): Promise<void> {
     return this.notificationService.deleteNotification(id);
   }
 
@@ -87,8 +87,8 @@ export class NotificationController {
     summary: 'Update isSeen status for a notification for customer',
   })
   async markAsSeen(
-    @Param('id') id: number,
-    @Param('customerId') customerId: number,
+    @Param('id') id: string,
+    @Param('customerId') customerId: string,
   ): Promise<void> {
     await this.notificationService.markAsSeen(id, customerId);
   }
@@ -112,7 +112,7 @@ export class NotificationController {
     description: 'Notification details.',
     type: Notification,
   })
-  async getNotificationById(@Param('id') id: number): Promise<Notification> {
+  async getNotificationById(@Param('id') id: string): Promise<Notification> {
     return this.notificationService.getNotificationById(id);
   }
 }

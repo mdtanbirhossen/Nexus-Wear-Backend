@@ -6,7 +6,7 @@ import {
   Param,
   Patch,
   Delete,
-  ParseIntPipe,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CartService } from '../service/cart.service';
@@ -33,7 +33,7 @@ export class CartController {
   @ApiOperation({ summary: 'Add an item to an existing cart' })
   @ApiResponse({ status: 201, description: 'Cart item added successfully' })
   async addCartItem(
-    @Param('cartId', ParseIntPipe) cartId: number,
+    @Param('cartId', ParseUUIDPipe) cartId: string,
     @Body() dto: CreateCartItemDto,
   ) {
     return this.cartService.addCartItem(cartId, dto);
@@ -43,7 +43,7 @@ export class CartController {
   @Get(':id')
   @ApiOperation({ summary: 'Get cart by ID' })
   @ApiResponse({ status: 200, description: 'Cart retrieved successfully' })
-  async getCart(@Param('id', ParseIntPipe) id: number) {
+  async getCart(@Param('id', ParseUUIDPipe) id: string) {
     return this.cartService.getCart(id);
   }
 
@@ -52,7 +52,7 @@ export class CartController {
   @ApiOperation({ summary: 'Get cart by customer ID (for logged-in users)' })
   @ApiResponse({ status: 200, description: 'Cart retrieved successfully' })
   async getCartByCustomerId(
-    @Param('customerId', ParseIntPipe) customerId: number,
+    @Param('customerId', ParseUUIDPipe) customerId: string,
   ) {
     return this.cartService.getCartByCustomerId(customerId);
   }
@@ -69,7 +69,7 @@ export class CartController {
   @Get('item/:id')
   @ApiOperation({ summary: 'Get a single cart item by ID' })
   @ApiResponse({ status: 200, description: 'Cart item retrieved successfully' })
-  async getCartItem(@Param('id', ParseIntPipe) id: number) {
+  async getCartItem(@Param('id', ParseUUIDPipe) id: string) {
     return this.cartService.getCartItem(id);
   }
 
@@ -78,7 +78,7 @@ export class CartController {
   @ApiOperation({ summary: 'Update an existing cart' })
   @ApiResponse({ status: 200, description: 'Cart updated successfully' })
   async updateCart(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() updateCartDto: UpdateCartDto,
   ) {
     return this.cartService.updateCart(id, updateCartDto);
@@ -89,7 +89,7 @@ export class CartController {
   @ApiOperation({ summary: 'Update a cart item' })
   @ApiResponse({ status: 200, description: 'Cart item updated successfully' })
   async updateCartItem(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() dto: UpdateCartItemDto,
   ) {
     return this.cartService.updateCartItem(id, dto);
@@ -99,7 +99,7 @@ export class CartController {
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a cart and all related items' })
   @ApiResponse({ status: 200, description: 'Cart deleted successfully' })
-  async deleteCart(@Param('id', ParseIntPipe) id: number) {
+  async deleteCart(@Param('id', ParseUUIDPipe) id: string) {
     await this.cartService.deleteCart(id);
     return { message: 'Cart deleted successfully' };
   }
@@ -108,7 +108,7 @@ export class CartController {
   @Delete('item/:id')
   @ApiOperation({ summary: 'Delete a specific cart item' })
   @ApiResponse({ status: 200, description: 'Cart item deleted successfully' })
-  async deleteCartItem(@Param('id', ParseIntPipe) id: number) {
+  async deleteCartItem(@Param('id', ParseUUIDPipe) id: string) {
     await this.cartService.deleteCartItem(id);
     return { message: 'Cart item deleted successfully' };
   }

@@ -13,7 +13,7 @@ import { BaseEntity } from 'src/common/entities/Base.entity';
 export class Cart extends BaseEntity {
     // customer ID for logged in users
   @Column({ nullable: true })
-  customerId: number;
+  customerId: string;
 
   // Session ID for non-logged in users
   @Column({ nullable: true })

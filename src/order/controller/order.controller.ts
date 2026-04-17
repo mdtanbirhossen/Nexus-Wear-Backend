@@ -7,6 +7,7 @@ import {
   Query,
   Put,
   Delete,
+  ParseUUIDPipe,
   ParseIntPipe,
 } from '@nestjs/common';
 import {
@@ -65,7 +66,7 @@ export class OrderController {
   async getAllOrders(
     @Query('limit', new ParseIntPipe({ optional: true })) limit: number,
     @Query('page', new ParseIntPipe({ optional: true })) page: number,
-    @Query('customerId') customerId?: number,
+    @Query('customerId') customerId?: string,
   ) {
     return this.orderService.getAllOrders({ limit, page, customerId });
   }
@@ -75,7 +76,7 @@ export class OrderController {
   @ApiOperation({ summary: 'Get a single order by ID' })
   @ApiParam({ name: 'id', type: Number, description: 'Order ID' })
   @ApiResponse({ status: 200, description: 'Order details', type: Order })
-  async getOrderById(@Param('id', ParseIntPipe) id: number): Promise<Order> {
+  async getOrderById(@Param('id', ParseUUIDPipe) id: string): Promise<Order> {
     return this.orderService.getOrderById(id);
   }
 
@@ -89,7 +90,7 @@ export class OrderController {
     type: Order,
   })
   async updateOrder(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() updateData: Partial<Order>,
   ): Promise<Order> {
     return this.orderService.updateOrder(id, updateData);
@@ -101,7 +102,7 @@ export class OrderController {
   @ApiParam({ name: 'id', type: Number, description: 'Order ID' })
   @ApiResponse({ status: 200, description: 'Order deleted successfully' })
   async deleteOrder(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseUUIDPipe) id: string,
   ): Promise<{ message: string }> {
     return this.orderService.deleteOrder(id);
   }

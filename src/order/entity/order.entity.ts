@@ -13,12 +13,12 @@ import {
 
 export interface OrderProduct {
   // Product info
-  productId: number;
+  productId: string;
   productCode?: string;
 
   // Selected attributes
-  sizeId?: number;
-  colorId?: number;
+  sizeId: string;
+  colorId: string;
 
   // Pricing and quantity
   unitPrice: number;
@@ -29,7 +29,7 @@ export interface OrderProduct {
 @Entity('order')
 export class Order {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @CreateDateColumn()
   orderDate: Date;
@@ -79,7 +79,7 @@ export class Order {
   updatedAt: Date;
 
   @Column()
-  customerId: number;
+  customerId: string;
 
   @Column({ type: 'json' })
   products: OrderProduct[];

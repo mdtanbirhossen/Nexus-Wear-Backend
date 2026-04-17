@@ -60,7 +60,7 @@ export class SizeService {
     return { data, page, limit, total };
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const size = await this.sizeRepository
       .createQueryBuilder('size')
       .where('size.id = :id', { id })
@@ -73,7 +73,7 @@ export class SizeService {
   }
 
   async update(
-    id: number,
+    id: string,
     updateSizeDto: UpdateSizeDto,
     image: Express.Multer.File,
   ) {
@@ -101,7 +101,7 @@ export class SizeService {
     };
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const result = await this.sizeRepository.delete(id);
     if (result.affected === 0)
       throw new NotFoundException(`Size not found with ID${id}`);

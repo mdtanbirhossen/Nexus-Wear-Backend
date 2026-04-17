@@ -26,16 +26,16 @@ export class CreateNotificationDto {
     example: 1,
   })
   @IsOptional()
-  @IsNumber()
-  customerId?: number;
+  @IsString()
+  customerId?: string;
 
   @ApiPropertyOptional({
     description: 'Order ID associated with this notification',
     example: 1001,
   })
   @IsOptional()
-  @IsNumber()
-  orderId?: number;
+  @IsString()
+  orderId?: string;
 
   @ApiPropertyOptional({
     description: 'Payment ID associated with this notification',

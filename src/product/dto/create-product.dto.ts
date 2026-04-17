@@ -66,12 +66,12 @@ export class CreateProductDto {
   availability?: ProductStatus;
 
   @ApiProperty({ example: 1, description: 'ID of the category' })
-  @IsNumber()
-  categoryId: number;
+  @IsString()
+  categoryId: string;
 
   @ApiProperty({ example: 2, description: 'ID of the subcategory' })
-  @IsNumber()
-  subcategoryId: number;
+  @IsString()
+  subcategoryId: string;
 
   @ApiProperty({
     example: [1, 2],

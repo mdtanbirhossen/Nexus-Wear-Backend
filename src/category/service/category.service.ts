@@ -90,7 +90,7 @@ export class CategoryService {
     return { data, total };
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const category = await this.categoryRepository
       .createQueryBuilder('category')
       .where('category.id = :id', { id })
@@ -105,7 +105,7 @@ export class CategoryService {
   }
 
   async update(
-    id: number,
+    id: string,
     updateCategoryDto: UpdateCategoryDto,
     image: Express.Multer.File,
   ) {
@@ -134,7 +134,7 @@ export class CategoryService {
     };
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const result = await this.categoryRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`No Category found with ID${id}`);

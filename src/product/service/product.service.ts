@@ -101,10 +101,10 @@ export class ProductService {
     limit: number;
     page: number;
     status?: string;
-    categoryId?: number;
-    subcategoryId?: number;
-    colorId?: number;
-    sizeId?: number;
+    categoryId?: string;
+    subcategoryId?: string;
+    colorId?: string;
+    sizeId?: string;
     minPrice?: number;
     maxPrice?: number;
     search?: string;
@@ -167,7 +167,7 @@ export class ProductService {
     };
   }
 
-  async findOne(id: number): Promise<Product> {
+  async findOne(id: string): Promise<Product> {
     const product = await this.productRepository.findOne({
       where: { id },
       relations: ['category', 'subCategory', 'colors', 'sizes', 'faqs'],
@@ -177,7 +177,7 @@ export class ProductService {
   }
 
   async update(
-    id: number,
+    id: string,
     updateProductDto: UpdateProductDto,
   ): Promise<Product> {
     const product = await this.productRepository.findOne({ where: { id } });
@@ -238,7 +238,7 @@ export class ProductService {
     return await this.productRepository.save(product);
   }
 
-  async remove(id: number): Promise<{ message: string }> {
+  async remove(id: string): Promise<{ message: string }> {
     const product = await this.productRepository.findOne({ where: { id } });
     if (!product) throw new NotFoundException('Product not found');
 

@@ -15,11 +15,11 @@ export class CreateOrderNotificationDto {
 
   @ApiProperty({ example: 1 })
   @IsNotEmpty()
-  @IsNumber()
-  customerId: number;
+  @IsString()
+  customerId: string;
 
   @ApiProperty({ example: 101 })
   @IsNotEmpty()
-  @IsNumber()
-  orderId: number;
+  @IsString()
+  orderId: string;
 }

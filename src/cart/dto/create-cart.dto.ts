@@ -16,7 +16,7 @@ export class CreateCartDto {
   })
   @IsOptional()
   @IsInt()
-  customerId?: number;
+  customerId?: string;
 
   @ApiPropertyOptional({
     description: 'Session ID for non-logged-in users',

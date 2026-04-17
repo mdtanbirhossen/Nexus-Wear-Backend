@@ -4,12 +4,13 @@ import {
   Delete,
   Get,
   Param,
-  ParseIntPipe,
+  ParseUUIDPipe,
   Patch,
   Post,
   Query,
   UploadedFile,
   UseInterceptors,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { SubcategoryService } from '../service/subcategory.service';
 import { ApiConsumes, ApiOperation, ApiQuery } from '@nestjs/swagger';
@@ -46,7 +47,7 @@ export class SubcategoryController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Get subcategory by ID' })
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.subcategoryService.findOne(id);
   }
 
@@ -54,7 +55,7 @@ export class SubcategoryController {
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('image'))
   update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() body: UpdateSubcategoryDto,
     @UploadedFile() image: Express.Multer.File,
   ) {
@@ -62,7 +63,7 @@ export class SubcategoryController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
+  remove(@Param('id') id: string) {
     return this.remove(id);
   }
 }

@@ -8,7 +8,7 @@ export class SubDistrict extends BaseEntity {
   name: string;
 
   @Column({ name: 'district_id' })
-  districtId: number;
+  districtId: string;
 
   @ManyToOne(() => District, (district) => district.subDistrict, {
     nullable: true,

@@ -40,10 +40,10 @@ export class Payment extends BaseEntity {
   status: PaymentStatus;
 
   @Column()
-  orderId: number;
+  orderId: string;
 
   @Column()
-  customerId: number;
+  customerId: string;
 
   @ManyToOne(() => Order, { onDelete: 'CASCADE', nullable: true })
   @JoinColumn({ name: 'orderId' })

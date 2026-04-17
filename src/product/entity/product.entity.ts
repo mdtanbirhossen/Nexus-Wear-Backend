@@ -39,7 +39,7 @@ export class Product extends BaseEntity {
   availability?: ProductStatus;
 
   // @Column()
-  // categoryId: number;
+  // categoryId: string;
 
 
 
