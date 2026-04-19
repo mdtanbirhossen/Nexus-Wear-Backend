@@ -10,7 +10,7 @@ export class AdminGuard implements CanActivate {
       throw new UnauthorizedException('User information missing');
     }
     
-    if (user.role !== 'Admin') {
+    if (!user.role) {
       throw new UnauthorizedException('Admin access required');
     }
     
