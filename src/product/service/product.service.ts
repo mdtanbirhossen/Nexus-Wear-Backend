@@ -125,7 +125,7 @@ export class ProductService {
 
     // Filters
     if (status) {
-      query.andWhere('product.status = :status', { status });
+      query.andWhere('product.availability = :status', { status });
     }
     if (categoryId) {
       query.andWhere('category.id = :categoryId', { categoryId });
@@ -147,7 +147,7 @@ export class ProductService {
     }
     if (search) {
       query.andWhere(
-        '(product.name ILIKE :search OR product.description ILIKE :search)',
+        '(product.name LIKE :search OR product.description LIKE :search)',
         { search: `%${search}%` },
       );
     }
