@@ -176,7 +176,9 @@ export class CustomerService {
       }
     }
 
-    await this.customerRepository.update(id, { ...updateData, image: image });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { image: _, ...dataToUpdate } = updateData;
+    await this.customerRepository.update(id, { ...dataToUpdate, image: image });
     const updatedCustomer = await this.findOne(id);
 
     return {

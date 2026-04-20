@@ -13,6 +13,7 @@ import {
   Query,
   ParseUUIDPipe,
   ParseIntPipe,
+  Patch,
 } from '@nestjs/common';
 import { CustomerService } from '../service/customer.service';
 import { CreateCustomerDto } from '../dto/create-customer.dto';
@@ -60,5 +61,17 @@ export class CustomerController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.customerService.findOne(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch(':id')
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileInterceptor('image'))
+  update(
+    @Param('id') id: string,
+    @UploadedFile() image: Express.Multer.File,
+    @Body() updateCustomerDto: Partial<CreateCustomerDto>,
+  ) {
+    return this.customerService.update(id, updateCustomerDto, image);
   }
 }
